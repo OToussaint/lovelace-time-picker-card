@@ -52,43 +52,51 @@ export class TimeUnitComponent extends LitElement {
   }
 
 static get styles(): CSSResult {
-  return css`
-    .time-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 8px; /* Plus d'espace entre les heures et minutes */
-    }
-    .time-picker-icon {
-      width: 30px;
-      padding: 4px;
-      text-align: center;
-      cursor: pointer;
-      color: var(--tpc-accent-color);
-    }
-    .time-input {
-      /* Largeur augmentée pour l'effet pilule de ton image 2 */
-      width: 65px; 
-      height: 38px;
-      padding: 0;
-      background: transparent !important;
-      border: 1.5px solid var(--tpc-accent-color) !important;
-      /* Arrondi maximal pour la forme gélule */
-      border-radius: 20px !important; 
-      color: var(--primary-text-color);
-      text-align: center;
-      font-size: 1.3em;
-      font-weight: 400;
-      -moz-appearance: textfield;
-    }
-    .time-input:focus {
-      outline: none;
-    }
-    .time-input::-webkit-inner-spin-button,
-    .time-input::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  `;
-}
+    return css`
+      .time-unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Balanced padding for layout stability */
+        padding: 5px !important;
+      }
+
+      .time-picker-icon {
+        width: 30px;
+        padding: var(--tpc-control-padding);
+        text-align: center;
+        cursor: pointer;
+        /* Using theme variables for consistent iconography */
+        color: var(--switch-checked-button-color) !important;
+      }
+
+      .time-input {
+        width: 30px;
+        /* Ultra-compact height and margin adjustment for slim profile */
+        height: 5px; 
+        margin: -10px; 
+        
+        padding: var(--tpc-control-padding);
+        background-color: rgba(0,0,0,0) !important;
+        border: 1px solid var(--switch-checked-button-color) !important;
+        border-radius: 7px;
+        
+        color: var(--primary-text-color) !important;
+        text-align: center;
+        font-size: 1em;
+        -moz-appearance: textfield;
+        transition: border-color 0.2s ease-in-out;
+      }
+
+      .time-input:focus {
+        outline: none;
+      }
+
+      .time-input::-webkit-inner-spin-button,
+      .time-input::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    `;
+  }
 }
