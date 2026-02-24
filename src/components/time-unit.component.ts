@@ -52,51 +52,43 @@ export class TimeUnitComponent extends LitElement {
   }
 
 static get styles(): CSSResult {
-    return css`
-      .time-unit {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 4px;
-      }
-
-      .time-picker-icon {
-        width: 30px;
-        padding: 2px;
-        text-align: center;
-        cursor: pointer;
-        /* Utilise la couleur du thème via la variable définie dans le parent */
-        color: var(--tpc-accent-color); 
-      }
-
-      .time-input {
-        width: 45px;
-        height: 38px;
-        padding: 0;
-        /* Design "pilule" */
-        background: transparent !important;
-        border: 1px solid var(--tpc-accent-color) !important;
-        border-radius: 12px !important;
-        
-        color: var(--primary-text-color);
-        text-align: center;
-        font-size: 1.1em;
-        font-weight: 500;
-        
-        -moz-appearance: textfield;
-        transition: border-color 0.2s ease-in-out;
-      }
-
-      .time-input:focus {
-        outline: none;
-        border-color: var(--primary-color) !important;
-      }
-
-      .time-input::-webkit-inner-spin-button,
-      .time-input::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    `;
-  }
+  return css`
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 8px; /* Plus d'espace entre les heures et minutes */
+    }
+    .time-picker-icon {
+      width: 30px;
+      padding: 4px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--tpc-accent-color);
+    }
+    .time-input {
+      /* Largeur augmentée pour l'effet pilule de ton image 2 */
+      width: 65px; 
+      height: 38px;
+      padding: 0;
+      background: transparent !important;
+      border: 1.5px solid var(--tpc-accent-color) !important;
+      /* Arrondi maximal pour la forme gélule */
+      border-radius: 20px !important; 
+      color: var(--primary-text-color);
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: 400;
+      -moz-appearance: textfield;
+    }
+    .time-input:focus {
+      outline: none;
+    }
+    .time-input::-webkit-inner-spin-button,
+    .time-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  `;
+}
 }
