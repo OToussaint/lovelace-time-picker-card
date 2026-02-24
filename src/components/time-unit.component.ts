@@ -51,46 +51,45 @@ export class TimeUnitComponent extends LitElement {
     `;
   }
 
-  static get styles(): CSSResult {
+static get styles(): CSSResult {
     return css`
       .time-unit {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0 8px;
+        padding: 0 4px;
       }
 
       .time-picker-icon {
         width: 30px;
-        padding: var(--tpc-control-padding);
+        padding: 2px;
         text-align: center;
         cursor: pointer;
-        color: var(--tpc-icon-color);
+        /* Utilise la couleur du thème via la variable définie dans le parent */
+        color: var(--tpc-accent-color); 
       }
 
       .time-input {
-        width: 30px;
-        padding: var(--tpc-control-padding);
-        background: var(--tpc-elements-background-color);
-        border: 0;
-        border-bottom: 2px solid var(--tpc-elements-background-color);
-        color: var(--tpc-text-color, #fff);
+        width: 45px;
+        height: 38px;
+        padding: 0;
+        /* Design "pilule" */
+        background: transparent !important;
+        border: 1px solid var(--tpc-accent-color) !important;
+        border-radius: 12px !important;
+        
+        color: var(--primary-text-color);
         text-align: center;
-        font-size: 1em;
+        font-size: 1.1em;
+        font-weight: 500;
+        
         -moz-appearance: textfield;
-
         transition: border-color 0.2s ease-in-out;
       }
 
       .time-input:focus {
         outline: none;
-      }
-
-      .time-input:invalid {
-        box-shadow: none;
-        outline: none;
-        border: 0;
-        border-bottom: 2px solid red;
+        border-color: var(--primary-color) !important;
       }
 
       .time-input::-webkit-inner-spin-button,
