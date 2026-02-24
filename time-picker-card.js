@@ -112,7 +112,8 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
       }
 
       .time-input {
-        width: 30px;
+        /* default width increased to match user's preference; overridable via --tpc-time-input-width */
+        width: var(--tpc-time-input-width, 50px);
         padding: var(--tpc-control-padding);
         background: var(--tpc-elements-background-color);
         /* merged styles from user's card_mod */
@@ -121,8 +122,8 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
         color: var(--tpc-time-input-color, var(--primary-text-color, #fff));
         border-radius: var(--tpc-time-input-radius, 7px);
         margin: var(--tpc-time-input-margin, -10px);
-        /* fixed height to match user's expectation (default 25px); overridable via --tpc-time-input-height */
-        height: var(--tpc-time-input-height, 25px);
+        /* fixed height to match user's expectation (default 23px); overridable via --tpc-time-input-height */
+        height: var(--tpc-time-input-height, 23px);
         box-sizing: border-box;
         text-align: center;
         font-size: 1em;
