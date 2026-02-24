@@ -288,26 +288,24 @@ export class TimePickerCard extends LitElement implements LovelaceCard {
     });
   }
 
-  static get styles(): CSSResult {
+static get styles(): CSSResult {
     return css`
       :host {
         --tpc-elements-background-color: var(
           --time-picker-elements-background-color,
-          var(--primary-color)
+          transparent
         );
-
         --tpc-control-padding: var(--time-picker-control-padding, 8px);
-
-        --tpc-icon-color: var(--time-picker-icon-color, var(--primary-text-color));
-        --tpc-text-color: var(--time-picker-text-color, #fff);
-        --tpc-accent-color: var(--time-picker-accent-color, var(--primary-color));
+        --tpc-icon-color: var(--time-picker-icon-color, var(--switch-checked-button-color, var(--primary-color)));
+        --tpc-text-color: var(--time-picker-text-color, var(--primary-text-color));
+        --tpc-accent-color: var(--time-picker-accent-color, var(--switch-checked-button-color, var(--primary-color)));
         --tpc-off-color: var(--time-picker-off-color, var(--disabled-text-color));
-
-        --tpc-border-radius: var(--time-picker-border-radius, var(--ha-card-border-radius, 4px));
+        --tpc-border-radius: var(--time-picker-border-radius, 12px);
       }
 
       ha-card {
         overflow: auto;
+        margin: -25px -4px -22px 0px; /* Tes marges */
       }
 
       ha-card.embedded {
@@ -334,11 +332,11 @@ export class TimePickerCard extends LitElement implements LovelaceCard {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 16px;
+        padding: 0px; /* Réduit pour coller à tes besoins */
       }
 
       .thin .time-picker-row {
-        padding: 0 !important ;
+        padding: 0 !important;
       }
 
       .time-picker-row.embedded {
@@ -356,29 +354,20 @@ export class TimePickerCard extends LitElement implements LovelaceCard {
         flex: 1 0 auto;
       }
 
-      .time-picker-content.layout-left {
-        justify-content: flex-start;
-      }
+      .time-picker-content.layout-left { justify-content: flex-start; }
+      .time-picker-content.layout-center { justify-content: center; }
+      .time-picker-content.layout-right { justify-content: flex-end; }
 
-      .time-picker-content.layout-center {
-        justify-content: center;
-      }
-
-      .time-picker-content.layout-right {
-        justify-content: flex-end;
-      }
-
-      .entity-icon {
-        cursor: pointer;
-      }
-
-      .entity-name-inside {
-        margin-left: 16px;
-        cursor: pointer;
+      .entity-icon { cursor: pointer; }
+      .entity-name-inside { margin-left: 16px; cursor: pointer; }
+      
+      .time-separator {
+        padding: 0 4px;
+        color: var(--primary-text-color);
       }
     `;
   }
-
+  
   static getStubConfig(
     _: HomeAssistant,
     entities: Array<string>
