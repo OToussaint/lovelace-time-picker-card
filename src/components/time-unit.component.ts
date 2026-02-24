@@ -80,6 +80,9 @@ export class TimeUnitComponent extends LitElement {
         color: var(--tpc-time-input-color, var(--primary-text-color, #fff));
         border-radius: var(--tpc-time-input-radius, 7px);
         margin: var(--tpc-time-input-margin, -10px);
+        /* fixed height to match user's expectation (default 25px); overridable via --tpc-time-input-height */
+        height: var(--tpc-time-input-height, 25px);
+        box-sizing: border-box;
         text-align: center;
         font-size: 1em;
         -moz-appearance: textfield;
