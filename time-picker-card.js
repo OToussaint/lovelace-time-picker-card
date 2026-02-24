@@ -94,51 +94,43 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
         <mwc-ripple id="ripple"></mwc-ripple>
       </div>
     `}static get styles(){return v`
-      .time-unit {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 4px;
-      }
-
-      .time-picker-icon {
-        width: 30px;
-        padding: 2px;
-        text-align: center;
-        cursor: pointer;
-        /* Utilise la couleur du thème via la variable définie dans le parent */
-        color: var(--tpc-accent-color); 
-      }
-
-      .time-input {
-        width: 45px;
-        height: 38px;
-        padding: 0;
-        /* Design "pilule" */
-        background: transparent !important;
-        border: 1px solid var(--tpc-accent-color) !important;
-        border-radius: 12px !important;
-        
-        color: var(--primary-text-color);
-        text-align: center;
-        font-size: 1.1em;
-        font-weight: 500;
-        
-        -moz-appearance: textfield;
-        transition: border-color 0.2s ease-in-out;
-      }
-
-      .time-input:focus {
-        outline: none;
-        border-color: var(--primary-color) !important;
-      }
-
-      .time-input::-webkit-inner-spin-button,
-      .time-input::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    `}};Ut.EVENT_UPDATE="update",Ut.EVENT_STEP_CHANGE="stepChange",t([_t()],Ut.prototype,"unit",void 0),Ut=Nt=t([vt("time-unit")],Ut);const Mt="input_datetime",It="double",Lt=xt.AlignControls.CENTER,Ot=xt.Name.HEADER;var Vt;const Rt={entity:"input_datetime entity id",name:"Name",hour_step:"Hour step",minute_step:"Minute step",hour_mode:"Hour mode",link_values:"Link values",align_controls:"Align controls",embedded:"Embedded?",thin:"Thin layout?",icon:"Icon",seconds:"Seconds"},Dt=[{name:"entity",selector:{entity:{domain:"input_datetime"}}},{name:"name",selector:{text:{}}},{type:"grid",schema:[{name:"hour_step",type:"integer",required:!0,default:1,valueMin:1,valueMax:24},{name:"minute_step",type:"integer",required:!0,default:5,valueMin:1,valueMax:60},{name:"hour_mode",type:"select",options:[[12,"12"],[24,"24"]]},{name:"link_values",type:"boolean"}]},{type:"expandable",name:"layout",title:"Layout controls",schema:[{name:"hour_mode",type:"select",options:[["single","single"],["double","double"]]},{name:"align_controls",type:"select",options:[["left","left"],["center","center"],["right","right"]]},{name:"name",type:"select",options:[["header","header"],["inside","inside"]]},{name:"embedded",type:"boolean"},{name:"thin",type:"boolean"}]},{type:"expandable",name:"hide",title:"Hide controls",schema:[{type:"grid",name:"",schema:[{name:"name",type:"boolean"},{name:"icon",type:"boolean"},{name:"seconds",type:"boolean"}]}]},{type:"expandable",title:"Actions",schema:[{name:"tap_action",selector:{action:{}}},{name:"double_tap_action",selector:{action:{}}},{name:"hold_action",selector:{action:{}}}]}];let jt=Vt=class extends pt{computeLabel({name:t}){return Rt[t]||t}valueChanged(t){const e=Object.assign(Object.assign({},this.config),t.detail.value);this.dispatch(e)}render(){return Y`
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 8px; /* Plus d'espace entre les heures et minutes */
+    }
+    .time-picker-icon {
+      width: 30px;
+      padding: 4px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--tpc-accent-color);
+    }
+    .time-input {
+      /* Largeur augmentée pour l'effet pilule de ton image 2 */
+      width: 65px; 
+      height: 38px;
+      padding: 0;
+      background: transparent !important;
+      border: 1.5px solid var(--tpc-accent-color) !important;
+      /* Arrondi maximal pour la forme gélule */
+      border-radius: 20px !important; 
+      color: var(--primary-text-color);
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: 400;
+      -moz-appearance: textfield;
+    }
+    .time-input:focus {
+      outline: none;
+    }
+    .time-input::-webkit-inner-spin-button,
+    .time-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  `}};Ut.EVENT_UPDATE="update",Ut.EVENT_STEP_CHANGE="stepChange",t([_t()],Ut.prototype,"unit",void 0),Ut=Nt=t([vt("time-unit")],Ut);const Mt="input_datetime",It="double",Lt=xt.AlignControls.CENTER,Ot=xt.Name.HEADER;var Vt;const Rt={entity:"input_datetime entity id",name:"Name",hour_step:"Hour step",minute_step:"Minute step",hour_mode:"Hour mode",link_values:"Link values",align_controls:"Align controls",embedded:"Embedded?",thin:"Thin layout?",icon:"Icon",seconds:"Seconds"},Dt=[{name:"entity",selector:{entity:{domain:"input_datetime"}}},{name:"name",selector:{text:{}}},{type:"grid",schema:[{name:"hour_step",type:"integer",required:!0,default:1,valueMin:1,valueMax:24},{name:"minute_step",type:"integer",required:!0,default:5,valueMin:1,valueMax:60},{name:"hour_mode",type:"select",options:[[12,"12"],[24,"24"]]},{name:"link_values",type:"boolean"}]},{type:"expandable",name:"layout",title:"Layout controls",schema:[{name:"hour_mode",type:"select",options:[["single","single"],["double","double"]]},{name:"align_controls",type:"select",options:[["left","left"],["center","center"],["right","right"]]},{name:"name",type:"select",options:[["header","header"],["inside","inside"]]},{name:"embedded",type:"boolean"},{name:"thin",type:"boolean"}]},{type:"expandable",name:"hide",title:"Hide controls",schema:[{type:"grid",name:"",schema:[{name:"name",type:"boolean"},{name:"icon",type:"boolean"},{name:"seconds",type:"boolean"}]}]},{type:"expandable",title:"Actions",schema:[{name:"tap_action",selector:{action:{}}},{name:"double_tap_action",selector:{action:{}}},{name:"hold_action",selector:{action:{}}}]}];let jt=Vt=class extends pt{computeLabel({name:t}){return Rt[t]||t}valueChanged(t){const e=Object.assign(Object.assign({},this.config),t.detail.value);this.dispatch(e)}render(){return Y`
       <ha-form
         .hass=${this.hass}
         .data=${this.config}
