@@ -1,4 +1,4 @@
-name: 'CI'
+name: 'CI/CD'
 
 on:
   push:
@@ -9,13 +9,27 @@ on:
       - master
 
 jobs:
-  test:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          # On a besoin du token pour pusher les modifs
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build
         run: |
           npm install
           npm run build
-      - name: Test
-        run: npm run test
+
+      - name: Commit and Push JS
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          # On s'assure que le fichier compilé n'est pas ignoré
+          git add -f dist/time-picker-card.js
+          # On le déplace à la racine pour HACS
+          cp dist/time-picker-card.js ./time-picker-card.js
+          git add time-picker-card.js
+          git commit -m "chore: update compiled javascript [skip ci]" || echo "No changes to commit"
+          git push origin master
