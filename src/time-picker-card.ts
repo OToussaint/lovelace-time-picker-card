@@ -288,59 +288,101 @@ export class TimePickerCard extends LitElement implements LovelaceCard {
     });
   }
 
-static get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`
       :host {
-        /* Default state color variable */
-        --state-icon-color: #FFC0FF;
+        --tpc-elements-background-color: var(
+          --time-picker-elements-background-color,
+          var(--primary-color)
+        );
+
+        --tpc-control-padding: var(--time-picker-control-padding, 8px);
+
+        --tpc-icon-color: var(--time-picker-icon-color, var(--primary-text-color));
+        --tpc-text-color: var(--time-picker-text-color, #fff);
+        --tpc-accent-color: var(--time-picker-accent-color, var(--primary-color));
+        --tpc-off-color: var(--time-picker-off-color, var(--disabled-text-color));
+
+        --tpc-border-radius: var(--time-picker-border-radius, var(--ha-card-border-radius, 4px));
       }
+
       ha-card {
-        /* Compact vertical alignment and transparent background */
-        margin: -25px -4px -22px 0px !important;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
+        overflow: auto;
+        /* default margin merged from user's card_mod; still overridable by card_mod or CSS variables */
+        margin: var(--tpc-ha-card-margin, -25px -4px -22px 0px);
       }
+
+      ha-card.embedded {
+        box-shadow: none;
+        border: none;
+        background: transparent;
+      }
+
+      .time-picker-header {
+        padding: 16px;
+        color: var(--tpc-text-color);
+        background-color: var(--tpc-elements-background-color);
+        border-top-left-radius: var(--tpc-border-radius);
+        border-top-right-radius: var(--tpc-border-radius);
+        font-size: 1em;
+        text-align: center;
+      }
+
+      .thin > .time-picker-header {
+        padding: 4px;
+      }
+
       .time-picker-row {
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: var(--tpc-row-padding, 0 16px);
+        padding: 16px;
       }
-      .time-picker-row.layout-vertical {
-        flex-direction: column;
-        align-items: flex-start;
+
+      .thin .time-picker-row {
+        padding: 0 !important ;
       }
+
+      .time-picker-row.embedded {
+        padding: 0;
+      }
+
+      .time-picker-row.with-header-name {
+        padding: 8px 16px 16px;
+      }
+
       .time-picker-content {
         display: flex;
         flex-direction: row;
         align-items: center;
         flex: 1 0 auto;
       }
+
+      .time-picker-content.layout-left {
+        justify-content: flex-start;
+      }
+
+      .time-picker-content.layout-center {
+        justify-content: center;
+      }
+
       .time-picker-content.layout-right {
         justify-content: flex-end;
       }
-      .time-separator {
-        padding: 0 8px;
-        color: var(--primary-text-color);
+
+      .entity-icon {
+        cursor: pointer;
+        /* allow state-based icon color to apply when provided by theme or card_mod */
+        color: var(--state-icon-color, inherit);
       }
+
       .entity-name-inside {
         margin-left: 16px;
         cursor: pointer;
       }
-      .entity-name-outside {
-        margin-bottom: 8px;
-        font-weight: 500;
-      }
-      .entity-icon {
-        cursor: pointer;
-        color: var(--state-icon-color);
-        display: flex;
-        align-items: center;
-      }
     `;
   }
-  
+
   static getStubConfig(
     _: HomeAssistant,
     entities: Array<string>

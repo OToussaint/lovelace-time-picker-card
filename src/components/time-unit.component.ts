@@ -51,14 +51,14 @@ export class TimeUnitComponent extends LitElement {
     `;
   }
 
-static get styles(): CSSResult {
+  static get styles(): CSSResult {
     return css`
       .time-unit {
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* Balanced padding for layout stability */
-        padding: 5px !important;
+        /* default padding merged from user's card_mod (can be overridden via CSS variables or card_mod) */
+        padding: var(--tpc-time-unit-padding, 5px);
       }
 
       .time-picker-icon {
@@ -66,30 +66,36 @@ static get styles(): CSSResult {
         padding: var(--tpc-control-padding);
         text-align: center;
         cursor: pointer;
-        /* Using theme variables for consistent iconography */
-        color: var(--switch-checked-button-color) !important;
+        /* prefer switch-checked color when present, otherwise fall back to tpc-icon-color */
+        color: var(--switch-checked-button-color, var(--tpc-icon-color));
       }
 
       .time-input {
         width: 30px;
-        /* Ultra-compact height and margin adjustment for slim profile */
-        height: 5px; 
-        margin: -10px; 
-        
         padding: var(--tpc-control-padding);
-        background-color: rgba(0,0,0,0) !important;
-        border: 1px solid var(--switch-checked-button-color) !important;
-        border-radius: 7px;
-        
-        color: var(--primary-text-color) !important;
+        background: var(--tpc-elements-background-color);
+        /* merged styles from user's card_mod */
+        border: 1px solid var(--tpc-time-input-border-color, var(--switch-checked-button-color));
+        background-color: var(--tpc-time-input-background, rgba(0,0,0,0));
+        color: var(--tpc-time-input-color, var(--primary-text-color, #fff));
+        border-radius: var(--tpc-time-input-radius, 7px);
+        margin: var(--tpc-time-input-margin, -10px);
         text-align: center;
         font-size: 1em;
         -moz-appearance: textfield;
+
         transition: border-color 0.2s ease-in-out;
       }
 
       .time-input:focus {
         outline: none;
+      }
+
+      .time-input:invalid {
+        box-shadow: none;
+        outline: none;
+        border: 0;
+        border-bottom: 2px solid red;
       }
 
       .time-input::-webkit-inner-spin-button,
