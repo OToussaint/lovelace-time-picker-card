@@ -116,12 +116,13 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
       /* Up, larger */
       .time-picker-icon.up ha-icon {
         --mdc-icon-size: 24px;
+        opacity: 1;
       }
 
       /* Down, thiner */
       .time-picker-icon.down ha-icon {
         --mdc-icon-size: 16px; 
-        opacity: 0.6;
+        opacity: 0.8;
       }
       
       .time-input {
