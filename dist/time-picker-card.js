@@ -89,7 +89,7 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
         ${this.renderStepChanger(kt.DOWN)}
       </div>
     `}onInputChange({target:{value:t}}){this.unit.setStringValue(t);const e=new CustomEvent(Nt.EVENT_UPDATE);this.dispatchEvent(e)}onStepChangerClick(t){const e=new CustomEvent(Nt.EVENT_STEP_CHANGE,{detail:{direction:t}});this.dispatchEvent(e)}renderStepChanger(t){return Y`
-      <div class="time-picker-icon" @click=${()=>this.onStepChangerClick(t)}>
+      <div class="time-picker-icon ${t===kt.UP?"up":"down"}" @click=${()=>this.onStepChangerClick(t)}>
         <ha-icon .icon="hass:chevron-${t}"></ha-icon>
         <mwc-ripple id="ripple"></mwc-ripple>
       </div>
@@ -107,10 +107,23 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
         padding: var(--tpc-control-padding);
         text-align: center;
         cursor: pointer;
-        /* prefer switch-checked color when present, otherwise fall back to tpc-icon-color */
         color: var(--switch-checked-button-color, var(--tpc-icon-color));
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
+      /* Up, larger */
+      .time-picker-icon.up ha-icon {
+        --mdc-icon-size: 24px;
+      }
+
+      /* Down, thiner */
+      .time-picker-icon.down ha-icon {
+        --mdc-icon-size: 16px; 
+        opacity: 0.6;
+      }
+      
       .time-input {
         /* default width increased to match user's preference; overridable via --tpc-time-input-width */
         width: var(--tpc-time-input-width, 50px);
