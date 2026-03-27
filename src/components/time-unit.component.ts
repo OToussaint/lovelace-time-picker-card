@@ -44,7 +44,7 @@ export class TimeUnitComponent extends LitElement {
 
   private renderStepChanger(direction: Direction): TemplateResult {
     return html`
-      <div class="time-picker-icon" @click=${() => this.onStepChangerClick(direction)}>
+      <div class="time-picker-icon ${direction === Direction.UP ? 'up' : 'down'}" @click=${() => this.onStepChangerClick(direction)}>
         <ha-icon .icon="hass:chevron-${direction}"></ha-icon>
         <mwc-ripple id="ripple"></mwc-ripple>
       </div>
@@ -66,10 +66,23 @@ export class TimeUnitComponent extends LitElement {
         padding: var(--tpc-control-padding);
         text-align: center;
         cursor: pointer;
-        /* prefer switch-checked color when present, otherwise fall back to tpc-icon-color */
         color: var(--switch-checked-button-color, var(--tpc-icon-color));
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
+      /* Up, larger */
+      .time-picker-icon.up ha-icon {
+        --mdc-icon-size: 24px;
+      }
+
+      /* Down, thiner */
+      .time-picker-icon.down ha-icon {
+        --mdc-icon-size: 16px; 
+        opacity: 0.6;
+      }
+      
       .time-input {
         /* default width increased to match user's preference; overridable via --tpc-time-input-width */
         width: var(--tpc-time-input-width, 50px);
