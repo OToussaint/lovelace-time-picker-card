@@ -107,7 +107,7 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
         padding: var(--tpc-control-padding);
         text-align: center;
         cursor: pointer;
-        color: var(--switch-checked-button-color, var(--tpc-icon-color));
+        color: var(--ha-slider-thumb-color, var(--primary-color));
         display: flex;
         justify-content: center;
         align-items: center;
@@ -131,7 +131,7 @@ const $t=1,yt=t=>(...e)=>({_$litDirective$:t,values:e});class bt{constructor(t){
         padding: var(--tpc-control-padding);
         background: var(--tpc-elements-background-color);
         /* merged styles from user's card_mod */
-        border: 1px solid var(--tpc-time-input-border-color, var(--switch-checked-button-color));
+        border: 1px solid var(--ha-slider-thumb-color, var(--primary-color));
         background-color: var(--tpc-time-input-background, rgba(0,0,0,0));
         color: var(--tpc-time-input-color, var(--primary-text-color, #fff));
         border-radius: var(--tpc-time-input-radius, 7px);
